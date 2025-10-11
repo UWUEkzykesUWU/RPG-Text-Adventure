@@ -1,20 +1,34 @@
-# 🏰 Text RPG Adventure (JavaScript)
 
-A simple **console RPG game** built while learning JavaScript.  
-Fight monsters, gain experience, complete quests, and level up your hero!
+# 🏰 RPG Text Adventure
+
+*A dark text-based journey through fear, code, and persistence.*
+
+---
+
+## ⚔️ About the Game
+
+**RPG Text Adventure** — это консольная ролевая игра, написанная на JavaScript.  
+Игрок исследует мир, сражается с врагами, получает золото, опыт и повышает уровень.  
+Каждое решение влияет на исход битвы — и на судьбу героя.
+
+> “Fear is the best teacher — and code, the best weapon.”  
+> — *Anxier*
 
 ---
 
 ## 🎮 Features
-- ⚔️ **Battle system** — random enemies (Goblin, Orc, Troll).  
-- 🏆 **Leveling system** — gain XP, increase HP and Attack.  
-- 📜 **Quest system** — complete tasks and earn rewards.  
-- 💰 **Gold and loot** — earn coins and manage your inventory.  
-- 🏰 **Hero Guild** — join when you reach level 3 for new adventures.
+
+- 🧙 **Shops** — аптекарь, кузнец и торговец редкостями.  
+- ⚔️ **Battles** — сражения с орками, гоблинами и троллями.  
+- 🧩 **Level System** — опыт, золото и улучшения героя.  
+- 💀 **Unique Items** — амулеты, зелья и артефакты с эффектами.  
+- 📖 **Text-only interface** — работает прямо в консоли.
 
 ---
 
-## 🕹 How to Play
-1. Clone this repository:
+## 🚀 Installation
+
+1. Убедись, что у тебя установлен [Node.js](https://nodejs.org/).  
+2. Клонируй репозиторий:
    ```bash
    git clone https://github.com/UWUEkzykesUWU/RPG-Text-Adventure.git
