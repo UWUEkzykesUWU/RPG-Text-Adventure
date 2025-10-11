@@ -32,3 +32,36 @@
 2. Клонируй репозиторий:
    ```bash
    git clone https://github.com/UWUEkzykesUWU/RPG-Text-Adventure.git
+
+---
+
+## 🧠 Skills Used
+
+- **JavaScript** (functions, objects, arrays)
+- **prompt-sync** для консольного ввода  
+- **ООП и игровые структуры**
+- **Логика развития персонажа**
+
+---
+
+## 🌌 Story Philosophy
+
+> “I code worlds that can’t exist — because the real one is too small for my fear.”
+
+Этот проект — часть моего пути.  
+Я создаю игры, в которых код и чувства переплетаются.
+
+---
+
+## 🧩 Future Plans
+
+- Добавить диалоги и систему выбора.  
+- Сделать сохранение прогресса.  
+- Добавить мини-босса: *The Echo of Anxier.*
+
+---
+
+## 🐉 Author
+
+**Anxier** — developer driven by fear and fascination.  
+📜 *Learning JavaScript. Building worlds line by line.*
