@@ -44,13 +44,15 @@ HP: ${player.hp}/${player.maxHp}  ATK: ${player.attack}  LVL: ${player.level}  G
       if (data) applyLoaded(data);
     }
     else if (choice === "6") {
-      const questCompleted = checkQuest();
-      if (questCompleted) {
-        startDialogue();
-      } else {
-        console.log("\n🧙 Guildmaster: 'You haven't completed your task yet. Return when the orcs are slain.'");
-      }
-    }
+  const questCompleted = checkQuest(); // проверяем, выполнен ли квест
+
+  if (questCompleted) {
+    startDialogue(); // запускаем диалог только если квест выполнен
+  } else {
+    console.log("\n🧙‍♂️ Guildmaster: 'You haven't completed your task yet. Return when the orcs are slain.'");
+  }
+}
+
     else if (choice === "7") {
       showInventory();
       const use = prompt("Use item number (or press Enter to cancel): ");
