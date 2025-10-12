@@ -1,5 +1,5 @@
 const { startDialogue } = require("./dialogue");
-const { showQuest, checkQuest } = require("./quest");
+const { showQuest, checkQuest, quests } = require("./quest");
 const prompt = require("prompt-sync")({ sigint: true });
 const { player } = require("./player");
 const { battle } = require("./battle");
@@ -15,8 +15,7 @@ function mainMenu() {
   showQuest();
   console.log(`\n=== Anxier RPG ===
 HP: ${player.hp}/${player.maxHp}  ATK: ${player.attack}  LVL: ${player.level}  Gold: ${player.gold}`);
-  console.log("1) Forest\n2) Shop\n3) Rest (5 gold)\n4) Save\n5) Load\n0) Exit");
-  console.log("6) Talk to Guildmaster");
+  console.log("1) Forest\n2) Shop\n3) Rest (5 gold)\n4) Save\n5) Load\n6) Talk to Guildmaster\n0) Exit");
   return prompt("Choice: ");
 }
 
@@ -37,7 +36,15 @@ else if (choice === "3") {
   } else console.log("Need 5 gold!");
 } else if (choice === "4") saveGame({ player });
 else if (choice === "5") loadGame(applyLoaded);
-else if (choice === "6") startDialogue();
+else if (choice === "6") {
+  const questCompleted = checkQuest(); // Проверяем, выполнен ли квест
+
+  if (questCompleted) {
+    startDialogue();
+  } else {
+    console.log("\n🧙 Guildmaster: 'You haven't completed your task yet. Return when the orcs are slain.'");
+  }
+}
       const data = loadGame();
       if (data) applyLoaded(data);
     }

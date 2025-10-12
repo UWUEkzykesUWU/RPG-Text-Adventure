@@ -30,16 +30,29 @@ function battle(prompt) {
     console.log(`${enemy.name} hits you for ${enemy.attack}.`);
   }
 
-  if (player.hp > 0) {
-    console.log(`🏆 You defeated the ${enemy.name}!`);
-    player.gold += enemy.gold;
-    gainXP(enemy.xp);
-    if (enemy.type === "orc") player.kills.orc++;
-    return true;
-  } else {
-    console.log("💀 You died...");
-    return false;
+ if (player.hp > 0) {
+  console.log(`🏆 You defeated the ${enemy.name}!`);
+  player.gold += enemy.gold;
+  gainXP(enemy.xp);
+
+  if (enemy.type === "orc") {
+    player.kills.orc++;
+
+    // Обновляем прогресс квеста
+    const { quests } = require("./quest");
+    const quest = quests[0];
+
+    if (!quest.completed) {
+      quest.progress++;
+      console.log(`📈 Quest progress: ${quest.progress}/${quest.need}`);
+    }
   }
+
+  return true;
+} else {
+  console.log("💀 You died...");
+  return false;
+}
 }
 
 module.exports = { battle };
