@@ -1,0 +1,36 @@
+const prompt = require("prompt-sync")({ sigint: true });
+const { player } = require("./player");
+const { battle } = require("./battle");
+const { visitShop } = require("./shop");
+const { saveGame, loadGame } = require("./save");
+
+
+function applyLoaded(data) {
+  Object.assign(player, data.player);
+}
+
+function mainMenu() {
+  console.log(`\n=== Anxier RPG ===
+HP: ${player.hp}/${player.maxHp}  ATK: ${player.attack}  LVL: ${player.level}  Gold: ${player.gold}`);
+  console.log("1) Forest\n2) Shop\n3) Rest (5 gold)\n4) Save\n5) Load\n0) Exit");
+  return prompt("Choice: ");
+}
+
+(function run() {
+  while (true) {
+    const choice = mainMenu();
+    if (choice === "0") break;
+
+    if (choice === "1") battle(prompt);
+    else if (choice === "2") visitShop(prompt);
+    else if (choice === "3") {
+      if (player.gold >= 5) { player.gold -= 5; player.hp = player.maxHp; console.log("🛏️ Rested!"); }
+      else console.log("Need 5 gold!");
+    }
+    else if (choice === "4") saveGame({ player });
+    else if (choice === "5") {
+      const data = loadGame();
+      if (data) applyLoaded(data);
+    }
+  }
+})();
