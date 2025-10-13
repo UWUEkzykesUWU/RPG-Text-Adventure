@@ -1,0 +1,15 @@
+{
+  "player": {
+    "name": "Anxier",
+    "hp": 100,
+    "maxHp": 100,
+    "attack": 10,
+    "gold": 0,
+    "xp": 0,
+    "level": 1,
+    "inventory": [],
+    "kills": {
+      "orc": 0
+    }
+  }
+}

@@ -1,16 +1,21 @@
 const fs = require("fs");
-const path = "./save.json";
+const { player } = require("./player");
+const { fastText } = require("./textEffects");
 
-function saveGame(state) {
-  fs.writeFileSync(path, JSON.stringify(state, null, 2), "utf8");
-  console.log("💾 Game saved!");
+function saveGame() {
+  fs.writeFileSync("save.json", JSON.stringify({ player }, null, 2));
+  fastText("💾 Game saved successfully!\n");
 }
 
 function loadGame() {
-  if (!fs.existsSync(path)) { console.log("No save found."); return null; }
-  const data = JSON.parse(fs.readFileSync(path, "utf8"));
-  console.log("📂 Game loaded!");
-  return data;
+  if (fs.existsSync("save.json")) {
+    const data = JSON.parse(fs.readFileSync("save.json", "utf-8"));
+    fastText("📂 Game loaded. Welcome back, hero!\n");
+    return data;
+  } else {
+    fastText("⚠️ No save found. The winds erase your past...\n");
+    return null;
+  }
 }
 
 module.exports = { saveGame, loadGame };
