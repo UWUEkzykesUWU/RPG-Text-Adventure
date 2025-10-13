@@ -32,8 +32,33 @@ function battle(prompt) {
 
  if (player.hp > 0) {
   console.log(`🏆 You defeated the ${enemy.name}!`);
+  // 🎁 LOOT SYSTEM
+const { addItem } = require("./inventory");
+
+function getRandomLoot() {
+  const roll = Math.random();
+
+  if (roll < 0.5) {
+    // 💰 50% шанс получить золото
+    const gold = Math.floor(Math.random() * 10) + 5;
+    player.gold += gold;
+  } 
+  else if (roll < 0.8) {
+    // 🍷 30% шанс получить зелье
+   addItem("Healing Potion", "heal", 30);
+  } 
+  else if (roll < 0.95) {
+    // ⚗️ 15% шанс получить эликсир атаки
+   addItem("Attack Elixir", "buff", 5)
+  } 
+  else {
+    // 💎 5% шанс на редкий амулет
+    addItem("Amulet of Courage", "unique", 0);
+  }
+}
   player.gold += enemy.gold;
   gainXP(enemy.xp);
+  getRandomLoot();
 
   if (enemy.type === "orc") {
     player.kills.orc++;
