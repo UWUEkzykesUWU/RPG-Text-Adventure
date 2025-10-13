@@ -1,3 +1,4 @@
+const { slowText, fastText } = require("./textEffects");
 const { showInventory, useItem } = require("./inventory");
 const { startDialogue } = require("./dialogue");
 const { showQuest, checkQuest, quests } = require("./quest");
@@ -14,6 +15,8 @@ function applyLoaded(data) {
 
 function mainMenu() {
   showQuest();
+  slowText("⚔️ Welcome to Anxier RPG...", 40);
+  fastText("A journey through fear, code, and persistence.\n");
   console.log(`\n=== Anxier RPG ===
 HP: ${player.hp}/${player.maxHp}  ATK: ${player.attack}  LVL: ${player.level}  Gold: ${player.gold}`);
   console.log("1) Forest\n2) Shop\n3) Rest (5 gold)\n4) Save\n5) Load\n6) Talk to Guildmaster\n7) Inventory\n0) Exit");
