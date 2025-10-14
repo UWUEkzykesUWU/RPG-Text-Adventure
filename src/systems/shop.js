@@ -1,4 +1,4 @@
-const { player } = require("./player");
+const { player } = require("../core/player");
 
 const shop = [
   { name: "potion", label: "Potion (+30 HP)", price: 10, effect: () => {} },

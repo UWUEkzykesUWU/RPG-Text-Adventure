@@ -1,11 +1,12 @@
 // gameLoop.js
-const { slowText, fastText, blinkingText, fadeInText } = require("./textEffects");
-const { battle } = require("./battle");
-const { visitShop } = require("./shop");
-const { saveGame, loadGame } = require("./save");
-const { player, applyLoaded } = require("./player");
-const { showQuest, checkQuest } = require("./quest");
-const { startDialogue } = require("./dialogue");
+
+const { slowText, fastText, blinkingText, fadeInText } = require("./ui/uiEffects");
+const { battle } = require("./core/battle");
+const { visitShop } = require("./systems/shop");
+const { saveGame, loadGame } = require("./systems/save");
+const { player, applyLoaded } = require("./core/player");
+const { showQuest, checkQuest } = require("./core/quest");
+const { startDialogue } = require("./systems/dialogue");
 const prompt = require("prompt-sync")({ sigint: true });
 
 async function intro() {

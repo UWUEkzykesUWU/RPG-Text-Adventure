@@ -1,4 +1,3 @@
-// textEffects.js
 const readline = require("readline");
 
 function sleep(ms) {
@@ -57,6 +56,5 @@ function fastText(text) {
   console.log(text);
 }
 
-module.exports = { slowText, fastText, blinkingText, fadeInText };
 
-// test branch commit
+module.exports = { slowText, fastText, blinkingText, fadeInText };
