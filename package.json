@@ -1,20 +1,31 @@
 {
   "name": "rpg-text-adventure",
   "version": "1.0.0",
-  "description": "*A dark text-based journey through fear, code, and persistence.*",
-  "main": "index.js",
+  "description": "🎭 A dark text-based RPG — a journey through fear, code, and persistence. Explore the unknown, fight your inner demons, and shape your destiny.",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
+  "keywords": [
+    "rpg",
+    "text-game",
+    "javascript",
+    "adventure",
+    "console-game",
+    "learning-project"
+  ],
+  "author": "UWUEzkykesUWU",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UWUEkzykesUWU/RPG-Text-Adventure.git"
+    "url": "https://github.com/UWUEzkykesUWU/RPG-Text-Adventure.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/UWUEkzykesUWU/RPG-Text-Adventure/issues"
+    "url": "https://github.com/UWUEzkykesUWU/RPG-Text-Adventure/issues"
   },
-  "homepage": "https://github.com/UWUEkzykesUWU/RPG-Text-Adventure#readme"
+  "homepage": "https://github.com/UWUEzkykesUWU/RPG-Text-Adventure#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }
