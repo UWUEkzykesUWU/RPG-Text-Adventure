@@ -1,5 +1,5 @@
 const prompt = require("prompt-sync")({ sigint: true });
-const { player } = require("./player");
+const { player } = require("../core/player");
 
 function startDialogue() {
   console.log("\n🧙 The Guildmaster greets you:");

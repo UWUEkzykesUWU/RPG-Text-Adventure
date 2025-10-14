@@ -1,6 +1,6 @@
 const fs = require("fs");
-const { player } = require("./player");
-const { fastText } = require("./textEffects");
+const { player } = require("../core/player");
+const { fastText } = require("../ui/uiEffects");
 
 function saveGame() {
   fs.writeFileSync("save.json", JSON.stringify({ player }, null, 2));
