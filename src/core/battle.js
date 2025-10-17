@@ -1,16 +1,42 @@
+const { fadeInText, slowText } = require("../ui/uiEffects");
 const { player, gainXP } = require("./player");
 const { getRandomEnemy } = require("./enemies");
+const { addItem } = require("../systems/inventory");
 
-function battle(prompt) {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+async function battle(prompt) {
+
   let enemy = getRandomEnemy();
   console.log(`⚔️  A ${enemy.name} appears!`);
 
   while (player.hp > 0 && enemy.hp > 0) {
     const choice = prompt("(1) Attack  (2) Use potion  (0) Run: ");
-    if (choice === "0") {
-      console.log("You ran away!");
-      return false;
-    }
+  if (choice === "0") {
+  const text1 = "🏃 You ran away!";
+  const text2 = "You flee into the shadows, heart pounding...\n";
+
+  for (const ch of text1) {
+    process.stdout.write(ch);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20); // мини-пауза
+  }
+
+  console.log();
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
+
+  for (const ch of text2) {
+    process.stdout.write(ch);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20);
+  }
+
+  console.log();
+  return false;
+}
+
+
 
     if (choice === "2") {
       const i = player.inventory.indexOf("potion");
@@ -30,32 +56,43 @@ function battle(prompt) {
     console.log(`${enemy.name} hits you for ${enemy.attack}.`);
   }
 
- if (player.hp > 0) {
-  console.log(`🏆 You defeated the ${enemy.name}!`);
-  // 🎁 LOOT SYSTEM
-const { addItem } = require("./inventory");
+if (player.hp > 0) {
+  const text1 = `🏆 You defeated the ${enemy.name}!`;
+  const text2 = "The enemy collapses... Silence fills the air.\n";
+
+  for (const ch of text1) {
+    process.stdout.write(ch);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20);
+  }
+
+  console.log();
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 400);
+
+  for (const ch of text2) {
+    process.stdout.write(ch);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20);
+  }
+
+  console.log();
+  // далее логика добычи и квестов
+
+ // 🪙 LOOT SYSTEM
 
 function getRandomLoot() {
   const roll = Math.random();
 
   if (roll < 0.5) {
-    // 💰 50% шанс получить золото
     const gold = Math.floor(Math.random() * 10) + 5;
     player.gold += gold;
-  } 
-  else if (roll < 0.8) {
-    // 🍷 30% шанс получить зелье
-   addItem("Healing Potion", "heal", 30);
-  } 
-  else if (roll < 0.95) {
-    // ⚗️ 15% шанс получить эликсир атаки
-   addItem("Attack Elixir", "buff", 5)
-  } 
-  else {
-    // 💎 5% шанс на редкий амулет
+  } else if (roll < 0.8) {
+    addItem("Healing Potion", "heal", 30);
+  } else if (roll < 0.95) {
+    addItem("Attack Elixir", "buff", 5);
+  } else {
     addItem("Amulet of Courage", "unique", 0);
   }
 }
+
   player.gold += enemy.gold;
   gainXP(enemy.xp);
   getRandomLoot();
@@ -74,10 +111,28 @@ function getRandomLoot() {
   }
 
   return true;
-} else {
-  console.log("💀 You died...");
+  } else {
+  const text1 = "💀 You died...";
+  const text2 = "Your vision fades as darkness embraces you...\n";
+
+  for (const ch of text1) {
+    process.stdout.write(ch);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20);
+  }
+
+  console.log();
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 400);
+
+  for (const ch of text2) {
+    process.stdout.write(ch);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20);
+  }
+
+  console.log();
   return false;
 }
+
 }
+
 
 module.exports = { battle };
