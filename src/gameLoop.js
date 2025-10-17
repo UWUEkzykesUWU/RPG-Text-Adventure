@@ -1,5 +1,5 @@
 // gameLoop.js
-
+const { rest } = require("./systems/rest");
 const { slowText, fastText, blinkingText, fadeInText } = require("./ui/uiEffects");
 const { battle } = require("./core/battle");
 const { visitShop } = require("./systems/shop");
@@ -36,32 +36,40 @@ async function gameLoop() {
   await intro();
 
   while (true) {
-    const choice = await mainMenu();
+  const choice = await mainMenu();
 
-    if (choice === "0") break;
-    if (choice === "1") {
-      const alive = battle(prompt);
-      if (!alive) break;
-      checkQuest();
-    } else if (choice === "2") {
-      visitShop(prompt);
-    } else if (choice === "3") {
-      if (player.gold >= 5) {
-        player.gold -= 5;
-        player.hp = player.maxHp;
-        console.log("💤 Rested!");
-      } else console.log("Need 5 gold!");
-    } else if (choice === "4") {
-      saveGame({ player });
-    } else if (choice === "5") {
-      const data = loadGame();
-      if (data) applyLoaded(data);
-    } else if (choice === "6") {
-      const questCompleted = checkQuest();
-      if (questCompleted) startDialogue();
-      else await slowText("\n🧙‍♂️ Guildmaster: 'You haven't completed your task yet. Return when the orcs are slain.'");
-    }
+  if (choice === "0") break;
+
+  if (choice === "1") {
+    const alive = await battle(prompt);
+    if (!alive) break;
+    checkQuest();
+  } 
+  else if (choice === "2") {
+    visitShop(prompt);
+  } 
+  else if (choice === "3") {
+    await rest(prompt);
+  } 
+  else if (choice === "4") {
+    saveGame({ player });
+  } 
+  else if (choice === "5") {
+    const data = loadGame();
+    if (data) applyLoaded(data);
+  } 
+  else if (choice === "6") {
+  const questCompleted = checkQuest();
+  if (questCompleted) {
+    await startDialogue(); // добавляем await!
+  } else {
+    await slowText("\n🧙 Guildmaster: 'You haven't completed your task yet. Return when the orcs are slain.'");
   }
 }
+  else {
+    console.log("Need 5 gold!");
+  }
+}
+}
 
-module.exports = { gameLoop };
+module.exports = { gameLoop }

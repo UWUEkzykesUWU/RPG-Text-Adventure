@@ -1,4 +1,4 @@
-const { player } = require("./player");
+const { player } = require("../core/player");
 
 let inventory = [
   // пример стартового предмета
